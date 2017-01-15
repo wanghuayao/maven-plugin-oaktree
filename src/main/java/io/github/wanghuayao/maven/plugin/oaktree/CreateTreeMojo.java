@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016 wanghuayao@hotmail.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.wanghuayao.maven.plugin.oaktree;
 
 import io.github.wanghuayao.maven.plugin.oaktree.command.CmdExecutor;
@@ -14,8 +29,13 @@ import org.apache.maven.project.MavenProject;
 import java.io.*;
 
 /**
- * Goal which touches a timestamp file.
  *
+ * Create dependency of all the module.
+ *
+ * <pre>
+ * Usage:
+ * mvn io.github.wanghuayao.maven.plugin:maven-oaktree-plugin:1.0-SNAPSHOT:create-tree
+ * </pre>
  * @goal create-tree
  * @phase process-sources
  */
@@ -77,12 +97,9 @@ public class CreateTreeMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException {
         log = getLog();
-
-
         try {
-
             OakProperties properties = new OakProperties();
-            dependencyArtifacts = "io.github.wanghuayao.maven.plugin:maven-plugin-oaktree:" + properties.getVersion() + ":dependency-artifacts";
+            dependencyArtifacts = "io.github.wanghuayao:maven-plugin-oaktree:" + properties.getVersion() + ":dependency-artifacts";
 
             filter = new ProcessingFilter(likePatten, hitePatten, deep);
 
@@ -151,7 +168,6 @@ public class CreateTreeMojo extends AbstractMojo {
 
     private void calcDependancy(ArtifactItem item, int deep) throws IOException {
 
-        String pomfile = item.getPomFilePath(outputDirectory.getPath());
         String outPutfileStr = okadependencyOutputDir + "/" + item.toArtifactString().replaceAll(":", "-") + ".txt";
         String pomFile = item.getPomFilePath(localRepository.getPath());
         File outputFile = new File(outPutfileStr);
@@ -184,6 +200,13 @@ public class CreateTreeMojo extends AbstractMojo {
                     , pomFile
                     , "-Doutput.file=" + outPutfileStr
                     , dependencyArtifacts}, null, null);
+
+            if(log.isDebugEnabled()) {
+                log.info(cr.getStdout());
+            }
+            if(cr.getStderr() != null && cr.getStderr().length() != 0) {
+                log.error(cr.getStderr());
+            }
         } else {
             log.info("resove from cache:" + item.toArtifactString());
         }

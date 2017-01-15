@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016 wanghuayao@hotmail.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.wanghuayao.maven.plugin.oaktree.command;
 
 import java.io.File;
@@ -12,6 +27,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 
+/**
+ * Execute command on Operating System
+ */
 public class CmdExecutor {
 
     private final static long     DEFAULT_TIMEOUT = 300000;
@@ -19,13 +37,29 @@ public class CmdExecutor {
     private final ExecutorService executor        = Executors.newCachedThreadPool();
 
 
+    /**
+     * Execute a command
+     * @param cmdAndArgs command arguments
+     * @param directory work directory
+     * @param env  env
+     * @return Command result
+     * @throws IOException
+     */
     public final NormalCmdResult execNormalCmd(String[] cmdAndArgs, File directory,
                                          Map<String, String> env)
             throws IOException {
         return execNormalCmd(cmdAndArgs, directory, env, DEFAULT_TIMEOUT);
     }
 
-
+    /**
+     * Execute a command with a timeout.
+     * @param cmdAndArgs command arguments
+     * @param directory work directory
+     * @param env  env
+     * @param timeout  timeout
+     * @return Command result
+     * @throws IOException
+     */
      public final NormalCmdResult execNormalCmd(String[] cmdAndArgs, File directory,
                                          Map<String, String> env, long timeout)
             throws IOException {
