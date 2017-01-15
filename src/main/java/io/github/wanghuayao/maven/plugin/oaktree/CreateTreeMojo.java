@@ -24,6 +24,8 @@ import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import java.io.*;
@@ -36,57 +38,47 @@ import java.io.*;
  * Usage:
  * mvn io.github.wanghuayao.maven.plugin:maven-oaktree-plugin:1.0-SNAPSHOT:create-tree
  * </pre>
- * @goal create-tree
- * @phase process-sources
  */
+@Mojo(name = "create-tree")
 public class CreateTreeMojo extends AbstractMojo {
     private OakProperties properties;
 
     private Log log;
     /**
      * Location of the file.
-     *
-     * @parameter property="project.build.directory"
-     * @required
      */
+    @Parameter(property = "project.build.directory", required = true)
     private File outputDirectory;
 
     /**
      * Location of the file.
-     *
-     * @parameter property="settings.localRepository"
-     * @required
      */
+    @Parameter(property = "settings.localRepository", required = true)
     private File localRepository;
 
     /**
      * Location of the file.
-     *
-     * @parameter property="like"
      */
+    @Parameter(property = "like")
     private String likePatten;
 
     /**
      * Location of the file.
-     *
-     * @parameter property="hate"
      */
+    @Parameter(property = "hate")
     private String hitePatten;
 
     /**
      * Location of the file.
-     *
-     * @parameter property="deep"
      */
-    private int deep = Integer.MAX_VALUE;
+    @Parameter(property = "deep",defaultValue = "100")
+    private int deep;
 
     /**
      * Location of the file.
-     *
-     * @parameter property="maven.home"
      */
+    @Parameter(property = "maven.home")
     private File mavenHome;
-
 
     private String mvnExec;
     private String okadependencyOutputDir;

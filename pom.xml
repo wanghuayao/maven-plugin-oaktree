@@ -5,7 +5,7 @@
     <groupId>io.github.wanghuayao</groupId>
     <artifactId>maven-plugin-oaktree</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.0.1-alpha-1</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <name>maven plugin oaktree</name>
     <description>Generate full maven dependence to YAML file.</description>
@@ -13,31 +13,45 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.version>3.2.2</maven.version>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-project -->
+
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
-            <version>2.2.1</version>
+            <version>3.0-alpha-2</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-artifact</artifactId>
-            <version>3.0</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.0</version>
+            <version>${maven.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.3</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugin-testing</groupId>
+            <artifactId>maven-plugin-testing-harness</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <scm>
@@ -72,13 +86,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <groupId>io.github.wanghuayao</groupId>
-                <artifactId>maven-plugin-oaktree</artifactId>
-                <version>0.0.1-alpha-1</version>
-            </plugin>
-        </plugins>
     </build>
 
     <profiles>

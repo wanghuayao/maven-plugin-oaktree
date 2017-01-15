@@ -20,6 +20,8 @@ import io.github.wanghuayao.maven.plugin.oaktree.utils.StreamUtils;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
@@ -27,26 +29,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * this is used by CreateTreeMojo
+ * this is used by DependencyArtifactsMojo
+ *
  * <pre>
  * mvn io.github.wanghuayao.maven.plugin:maven-oaktree-plugin:1.0-SNAPSHOT:dependency-artifacts -Doutput.file=xxxxxxxxxxxxxxxxxxxxx
  * </pre>
- * @goal dependency-artifacts
- * 
- * @phase process-sources
  */
+@Mojo(name = "dependency-artifacts")
 public class DependencyArtifactsMojo extends AbstractMojo {
     /**
      * Location of the file.
-     * @parameter property="output.file"
      */
+    @Parameter(property = "output.file")
     private File outputFile;
 
     /**
      * Location of the file.
-     * @parameter property="project.build.directory"
-     * @required
      */
+    @Parameter(property = "project.build.directory",required = true)
     private File outputDirectory;
 
     public void execute() throws MojoExecutionException

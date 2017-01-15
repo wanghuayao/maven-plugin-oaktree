@@ -41,7 +41,7 @@ public class ProcessingFilter {
      *
      * @param item
      * @param deep
-     * @return
+     * @return if is include
      */
     public boolean isGoOnProcessing(ArtifactItem item, int deep){
         if(deep > this.deep) {
