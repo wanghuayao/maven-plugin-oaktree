@@ -208,18 +208,22 @@ public class CreateTreeMojo extends AbstractMojo {
             item.setChildUnkwon(true);
             return;
         }
-
-        FileReader fr = new FileReader(outputFile);
-        BufferedReader bf = new BufferedReader(fr);
-        String valueString = null;
-        int nextDeep = deep + 1;
-        while ((valueString = bf.readLine()) != null) {
-            ArtifactItem subItem = ArtifactItem.valueOf(valueString);
-            if (filter.isGoOnProcessing(subItem, nextDeep)) {
-                calcDependancy(subItem, nextDeep);
-                item.addChildren(subItem);
-            }
-        }
+        FileReader fr = null;
+        try{
+            fr = new FileReader(outputFile);
+           BufferedReader bf = new BufferedReader(fr);
+           String valueString = null;
+           int nextDeep = deep + 1;
+           while ((valueString = bf.readLine()) != null) {
+               ArtifactItem subItem = ArtifactItem.valueOf(valueString);
+               if (filter.isGoOnProcessing(subItem, nextDeep)) {
+                   calcDependancy(subItem, nextDeep);
+                   item.addChildren(subItem);
+               }
+           }
+       }finally {
+            StreamUtils.quiteClose(fr);
+       }
     }
 
     public String removeUnusedCharInPath(String path) throws MojoExecutionException {

@@ -153,8 +153,8 @@ public class ArtifactItem {
 
     public String toYamlStr() {
         StringBuilder sb = new StringBuilder();
-        sb.append(groupId).append(":").append(artifactId)
-                .append("\n").append(packaging).append(":").append(version).append(":").append(scope!=null ? scope:"default").append(" ").append(classifier==null ? "":classifier);
+        sb.append(groupId).append(":").append(artifactId);
+//                .append("\n").append(packaging).append(":").append(version).append(":").append(scope!=null ? scope:"default").append(" ").append(classifier==null ? "":classifier);
         return sb.toString();
     }
     @Override
