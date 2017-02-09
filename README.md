@@ -3,9 +3,8 @@ Oaktree is a maven plugin witch can output generate full dependence tree.
 The generated YAML file can be shown as graphic by [mindmapit](http://josetomastocino.github.io/mindmapit/)
 
 ### Usage
->currently havn't commit to the central Repository.
 ```
-mvn io.github.wanghuayao:maven-plugin-oaktree:0.0.1-alpha-1:dependency-artifacts [OPTIONS]
+mvn io.github.wanghuayao:maven-plugin-oaktree:0.0.1:create-tree [OPTIONS]
 ```
 ##### OPTIONS
 

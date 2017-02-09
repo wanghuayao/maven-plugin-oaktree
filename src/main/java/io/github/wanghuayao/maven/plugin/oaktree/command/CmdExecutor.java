@@ -43,7 +43,7 @@ public class CmdExecutor {
      * @param directory work directory
      * @param env  env
      * @return Command result
-     * @throws IOException
+     * @throws IOException file not found
      */
     public final NormalCmdResult execNormalCmd(String[] cmdAndArgs, File directory,
                                          Map<String, String> env)
@@ -58,7 +58,7 @@ public class CmdExecutor {
      * @param env  env
      * @param timeout  timeout
      * @return Command result
-     * @throws IOException
+     * @throws IOException file not found
      */
      public final NormalCmdResult execNormalCmd(String[] cmdAndArgs, File directory,
                                          Map<String, String> env, long timeout)

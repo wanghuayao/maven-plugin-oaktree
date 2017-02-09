@@ -5,10 +5,10 @@
     <groupId>io.github.wanghuayao</groupId>
     <artifactId>maven-plugin-oaktree</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>maven plugin oaktree</name>
-    <description>Generate full maven dependence to YAML file.</description>
+    <description>Generate full maven dependence to TEXT file.</description>
     <url>https://github.com/wanghuayao/maven-plugin-oaktree</url>
 
     <properties>
@@ -50,8 +50,6 @@
             <version>3.3.0</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <scm>
@@ -98,7 +96,7 @@
                 </snapshotRepository>
                 <repository>
                     <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
                 </repository>
             </distributionManagement>
             <build>
